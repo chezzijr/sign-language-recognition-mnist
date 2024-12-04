@@ -1,12 +1,13 @@
-import keras
+from tensorflow import keras 
 from keras import layers
 from keras.api.regularizers import L2
 from keras.api.callbacks import EarlyStopping
+from keras.api import Sequential
 import config
 
 
 def cnn_model_1():
-    model = keras.Sequential([
+    model = Sequential([
         layers.Conv2D(6, (5, 5), padding="same", input_shape=(28, 28, 1)),
         layers.MaxPooling2D((2, 2)),
         layers.ReLU(),
@@ -23,7 +24,7 @@ def cnn_model_1():
 
 
 def cnn_model_2():
-    model = keras.Sequential([
+    model = Sequential([
         layers.Conv2D(32, (3, 3), activation="relu", input_shape=(28, 28, 1)),
         layers.BatchNormalization(),
         layers.Conv2D(32, (3, 3), activation="relu"),
