@@ -7,7 +7,7 @@ import os
 import numpy as np
 
 model = load_model('models/cnn_model_2.keras')
-print(model.summary())
+model.summary()
 
 infos = [x for x in os.walk('datasets/')][1:]
 test_input = []
@@ -20,6 +20,7 @@ for dir, _, files in infos:
         img = Image.open(f'{dir}/{file}').convert('L').resize((28, 28))
         # convert the image to a numpy array
         img = np.array(img)
+        img = img / 255.0
         test_input.append(img)
 
         character = dir[-1] # uppercase ascii character
